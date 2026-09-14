@@ -17,17 +17,6 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 FIXTURES_DIR = os.path.join(os.path.dirname(__file__), "fixtures")
 
 
-def _load(filename: str):
-    with open(os.path.join(DATA_DIR, filename), "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def _save(filename: str, data) -> None:
-    with open(os.path.join(DATA_DIR, filename), "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2)
-        f.write("\n")
-
-
 def reset_data() -> None:
     os.makedirs(DATA_DIR, exist_ok=True)
     for name in ("invoices.json", "payments.json", "meter.json"):
@@ -35,6 +24,25 @@ def reset_data() -> None:
             os.path.join(FIXTURES_DIR, name),
             os.path.join(DATA_DIR, name),
         )
+
+
+# Ensure data directory and fixtures exist on startup
+if not os.path.exists(os.path.join(DATA_DIR, "invoices.json")):
+    reset_data()
+
+
+def _load(filename: str):
+    path = os.path.join(DATA_DIR, filename)
+    if not os.path.exists(path):
+        reset_data()
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _save(filename: str, data) -> None:
+    with open(os.path.join(DATA_DIR, filename), "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+        f.write("\n")
 
 
 def _norm_name(name: str) -> str:

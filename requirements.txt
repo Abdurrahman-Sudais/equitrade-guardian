@@ -3,3 +3,4 @@ strands-agents
 strands-agents-tools
 ollama
 flask
+gunicorn
