@@ -41,6 +41,49 @@ The model **orchestrates and explains**. Matching rules and spend limits live
 in Python tools, so a local 7B model cannot “hallucinate a match” or buy
 power without policy.
 
+## Architecture Diagram
+
+```mermaid
+flowchart TD
+    subgraph DataSources["Data Ingestion & Telemetry"]
+        A["NIBSS / ISO 20022 Alerts<br/>(Simulated Bank Inflows)"]
+        B["IKEDC Prepaid Meter<br/>(Balance & Grid Telemetry)"]
+    end
+
+    subgraph AgentCore["Strands Agent Orchestrator"]
+        C["Strands Agent (`agent.py`)<br/>Local LLM / Ollama (`qwen2.5:7b`)"]
+    end
+
+    subgraph PolicyEngine["Deterministic Policy & Tool Guard (`engine.py`)"]
+        E["Payment Matching Rules<br/>• Exact EndToEndId Ref<br/>• Exact Amount<br/>• Debtor Identity Validation"]
+        F["Utility Spend Guard<br/>• Critical Threshold (₦1,000)<br/>• Spend Limit Cap (₦2,000)"]
+    end
+
+    subgraph HumanLoop["Human-in-the-Loop (`dashboard.py`)"]
+        G["Flagged Review Queue<br/>(Partial amount, missing ref)"]
+        H["Treasurer Decision & Manual Match"]
+        I["Over-Limit Spend Approval (>₦2,000)"]
+    end
+
+    subgraph Settlement["Ledger & External Execution"]
+        J["Reconciled Dues Ledger<br/>(`invoices.json`)"]
+        K["VendPower API Simulation<br/>(Token Generation & Meter Credit)"]
+    end
+
+    A --> C
+    B --> C
+    C <--> PolicyEngine
+    
+    E -- "Verified Exact Match" --> J
+    E -- "Ambiguity / Discrepancy" --> G
+    G --> H
+    H --> J
+    
+    F -- "Under Limit (Auto)" --> K
+    F -- "Exceeds Limit" --> I
+    I -- "Human Approved" --> K
+```
+
 ## Demo data (on purpose)
 
 Five payments:
