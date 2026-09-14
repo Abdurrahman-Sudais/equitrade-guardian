@@ -1,0 +1,42 @@
+[
+  {
+    "id": "INV-001",
+    "member_name": "Amaka Okafor",
+    "amount_due": 5000,
+    "reference": "DUES-MAR-AMAKA",
+    "period": "2026-03",
+    "status": "open"
+  },
+  {
+    "id": "INV-002",
+    "member_name": "Tunde Bello",
+    "amount_due": 3000,
+    "reference": "DUES-MAR-TUNDE",
+    "period": "2026-03",
+    "status": "open"
+  },
+  {
+    "id": "INV-003",
+    "member_name": "Grace Eze",
+    "amount_due": 7500,
+    "reference": "DUES-MAR-GRACE",
+    "period": "2026-03",
+    "status": "open"
+  },
+  {
+    "id": "INV-004",
+    "member_name": "Chinedu Obi",
+    "amount_due": 5000,
+    "reference": "DUES-MAR-CHINEDU",
+    "period": "2026-03",
+    "status": "open"
+  },
+  {
+    "id": "INV-005",
+    "member_name": "Ngozi Umeh",
+    "amount_due": 4000,
+    "reference": "DUES-MAR-NGOZI",
+    "period": "2026-03",
+    "status": "open"
+  }
+]

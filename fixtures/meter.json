@@ -1,0 +1,13 @@
+{
+  "disco": "IKEDC",
+  "meter_number": "45321987654",
+  "site": "Ikeja Community Cooperative — office",
+  "balance": 800,
+  "low_balance_threshold": 1500,
+  "recommended_topup": 4000,
+  "auto_approve_limit": 2000,
+  "tariff_ngn_per_kwh": 80,
+  "last_topup": 0,
+  "last_token": null,
+  "last_vend": null
+}

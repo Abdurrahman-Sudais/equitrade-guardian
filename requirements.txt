@@ -1,0 +1,5 @@
+# Direct dependencies only — all others are resolved as transitive deps.
+strands-agents
+strands-agents-tools
+ollama
+flask
