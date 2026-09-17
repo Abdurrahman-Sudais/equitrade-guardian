@@ -19,7 +19,7 @@ Built for the AWS **Agents for Humans** hackathon (**Good Neighbor** track).
 
 ## Who it is for
 
-**Ikeja Community Cooperative** (demo org) — a treasurer who otherwise spends
+**Ikeja Community Cooperative** (demo org), a treasurer who otherwise spends
 mornings copying NIBSS alerts into a spreadsheet, then walking to a vendor
 to buy an electricity token when the lights flicker.
 
